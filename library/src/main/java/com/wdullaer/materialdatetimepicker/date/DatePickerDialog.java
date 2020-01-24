@@ -364,8 +364,8 @@ public class DatePickerDialog extends AppCompatDialogFragment implements
 
         mDefaultLimiter.setController(this);
 
-        int viewRes = mVersion == Version.VERSION_1 ? R.layout.mdtp_date_picker_dialog : R.layout.mdtp_date_picker_dialog_v2;
-        View view = inflater.inflate(viewRes, container, false);
+
+        View view = inflater.inflate(getLayoutResId(), container, false);
         // All options have been set at this point: round the initial selection if necessary
         mCalendar = mDateRangeLimiter.setToNearestDate(mCalendar);
 
@@ -464,6 +464,10 @@ public class DatePickerDialog extends AppCompatDialogFragment implements
 
         mHapticFeedbackController = new HapticFeedbackController(activity);
         return view;
+    }
+
+    protected int getLayoutResId() {
+        return mVersion == Version.VERSION_1 ? R.layout.mdtp_date_picker_dialog : R.layout.mdtp_date_picker_dialog_v2;
     }
 
     @Override
